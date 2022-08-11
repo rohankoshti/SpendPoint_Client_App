@@ -14,8 +14,6 @@ namespace SpendPoint
 {
     public static class GoogleSheetSummary
     {
-        // If modifying these scopes, delete your previously saved credentials
-        // at ~/.credentials/sheets.googleapis.com-dotnet-quickstart.json
         static string[] Scopes = { SheetsService.Scope.Spreadsheets };
         static string ApplicationName = "CSV To Excel";
 
@@ -26,8 +24,6 @@ namespace SpendPoint
             using (var stream =
                 new FileStream("credentials.json", FileMode.Open, FileAccess.Read))
             {
-                // The file token.json stores the user's access and refresh tokens, and is created
-                // automatically when the authorization flow completes for the first time.
                 string credPath = credentialsDirectory;
                 credential = GoogleWebAuthorizationBroker.AuthorizeAsync(
                     GoogleClientSecrets.Load(stream).Secrets,
@@ -187,7 +183,6 @@ namespace SpendPoint
             }
             catch (Exception ex)
             {
-                // try to write to local NUL file
                 if (writeToLocalGoogleNULFile)
                 {
                     Logger.WriteLog("Error inside : UpdateSheet : Could not connect to server. Please contact administrator of the program." + ex.Message, outputDirectoryPath);
